@@ -1,0 +1,28 @@
+.auth{
+    background-color: darkcyan;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.auth-form__wrapper{
+    background-color: #fff;
+    width: 100%;
+    max-width: 350px;
+    height: 450px;
+    padding: 20px;
+    border-radius: 5px;
+}
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px 0;
+    margin-top: 20px;
+    input{
+        padding: 10px 0;
+        font-size: 18px;
+        border: 1px solid grey;
+        outline: none;
+        text-indent: 10px;
+    }
+}
