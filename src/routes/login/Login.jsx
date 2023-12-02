@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '../../utils'
 
 const Login = () => {
   return (
@@ -7,7 +8,7 @@ const Login = () => {
       <form className='auth-form'>
         <input type="email" placeholder='Your Email' />
         <input type="password" placeholder='Your Password' />
-        <button type='submit'>Submit</button>
+        <Button text={'Login'} isloading={false} type={'submit'} appearence={'success'}/>
       </form>
     </div>
   )

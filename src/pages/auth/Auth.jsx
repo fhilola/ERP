@@ -6,6 +6,20 @@ const Auth = () => {
   return (
     <div className='auth'>
       <div className="auth-form__wrapper">
+        <nav>
+          <ul>
+            <li>
+              <NavLink>
+                
+              </NavLink>
+            </li>
+            <li>
+              <NavLink>
+
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
         <Outlet/>
       </div>
     </div>

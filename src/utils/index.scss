@@ -1,0 +1,29 @@
+.btn{
+    @if attr('data-appearence') == 'success'{
+        background-color: darkcyan;
+    }
+    @else if attr('data-appearence') == 'danger'{
+        background-color: red;
+    }
+    @else if attr('data-appearence') == 'warning'{
+        background-color: gold;
+    }
+    background-color: darkcyan;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    &:disabled{
+        opacity: .5;
+    }
+    &:active{
+        transform: scale(.98);
+    }
+    &:hover{
+        opacity: .9;
+    }
+}
