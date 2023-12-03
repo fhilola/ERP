@@ -1,21 +1,30 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Outlet, NavLink, Link } from 'react-router-dom'
 import './Auth.scss'
 
 const Auth = () => {
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    navigate('/auth/login')
+  },[])
   return (
     <div className='auth'>
+      <Link to={'/'}>
+      <h1>ERP AUTH</h1>
+      </Link>
       <div className="auth-form__wrapper">
-        <nav>
-          <ul>
-            <li>
-              <NavLink>
-                
+        <nav className='auth__nav'>
+          <ul className='nav__list'>
+            <li className='list__item'>
+              <NavLink to={'/auth/login'} className={({isActive}) => isActive ? 'link link--active' : 'link'}>
+                Login
               </NavLink>
             </li>
-            <li>
-              <NavLink>
-
+            <li className='list__item'>
+              <NavLink to={'/auth/register'} className={({isActive}) => isActive ? 'link link--active' : 'link'}>
+                Register
               </NavLink>
             </li>
           </ul>
