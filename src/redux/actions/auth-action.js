@@ -52,4 +52,16 @@ const register = USER => async dispatch => {
         })
 }
 
-export default register
+const login = USER => async dispatch => {
+    axios.post('/users/login', USER)
+    .then(response => {
+        if(response.status === 200){
+            dispatch(auth(response.data), 'Successfully loged in')
+        }
+    })
+    .catch(err => {
+        dispatch(auth_error(err.response.data.message))
+    })
+}
+
+export { register, login}

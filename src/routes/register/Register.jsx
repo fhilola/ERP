@@ -1,6 +1,6 @@
 import { Button } from "../../utils"
 import {connect, useSelector} from 'react-redux'
-import register from "../../redux/actions/auth-action"
+import {register} from "../../redux/actions/auth-action"
 import { useState } from "react"
 
 const Register = props => {
