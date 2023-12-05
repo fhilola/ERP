@@ -2,8 +2,8 @@ import {Route, Routes} from 'react-router-dom'
 import {lazy, Suspense} from 'react'
 import Login from '../routes/login/Login'
 import Register from '../routes/register/Register'
+const Private = lazy(()=>import('../helpers'))
 const Admin = lazy(()=>import('../pages/admin/Admin'))
-const Home = lazy(()=>import('../pages/home/Home'))
 const Auth = lazy(()=>import('../pages/auth/Auth'))
 
 const RouterController = () => {
@@ -11,7 +11,7 @@ const RouterController = () => {
         <Routes>
             <Route path='/' element={
                 <Suspense fallback={<p>Loading...</p>}>
-                <Home/>
+                <Private/>
             </Suspense>
             }
             />

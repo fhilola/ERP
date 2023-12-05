@@ -3,6 +3,7 @@ import axios from '../../services/index'
 import {toast} from 'react-toastify'
 
 const auth = (user, message) => {
+    console.log(message);
     toast.success(message)
     return {
         type: AUTH,
@@ -45,6 +46,7 @@ const register = USER => async dispatch => {
         .then(response => {
             if(response.status === 201){
                 dispatch(auth(response.data, 'Successfully registered'))
+                localStorage.setItem('access_token', response.data.token)
             }
         })
         .catch(err => {
@@ -53,10 +55,12 @@ const register = USER => async dispatch => {
 }
 
 const login = USER => async dispatch => {
+    dispatch(auth_loading('Loading...'))
     axios.post('/users/login', USER)
     .then(response => {
         if(response.status === 200){
-            dispatch(auth(response.data), 'Successfully loged in')
+            dispatch(auth(response.data, 'Successfully loged in'))
+            localStorage.setItem('access_token', response.data.token)
         }
     })
     .catch(err => {
@@ -64,4 +68,8 @@ const login = USER => async dispatch => {
     })
 }
 
-export { register, login}
+const logOut = () => async (dispatch, getSelector) => {
+    dispatch(auth_logout('You are successfully logged out'))
+}
+
+export { register, login, logOut}

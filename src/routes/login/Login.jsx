@@ -2,15 +2,16 @@ import { useState } from 'react'
 import {connect, useSelector} from 'react-redux'
 import { Button } from '../../utils'
 import { login } from '../../redux/actions/auth-action'
+import { useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
-  const data = useSelector(state => state)
-  console.log(data);
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const handleLoginUser = (e) => {
     e.preventDefault()
     props.login({email, password})
+    navigate('/')
   }
   return (
     <div className='auth-form-container'>
