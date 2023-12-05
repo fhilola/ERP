@@ -1,22 +1,30 @@
 import { AUTH, AUTH_ERROR, AUTH_LOADING, AUTH_LOGOUT } from "./index";
 import axios from '../../services/index'
+import {toast} from 'react-toastify'
 
-const auth = (user) => {
+const auth = (user, message) => {
+    toast.success(message)
     return {
         type: AUTH,
         payload: {
-            user
+            user,
+            message
         }
     }
 }
 
-const auth_loading = () => {
+const auth_loading = (message) => {
+    toast.warning(message)
     return {
-        type: AUTH_LOADING
+        type: AUTH_LOADING,
+        payload: {
+            message
+        }
     }
 }
 
 const auth_error = (message) => {
+    toast.error(message)
     return {
         type: AUTH_ERROR,
         payload: {
@@ -32,11 +40,11 @@ const auth_logout = () => {
 }
 
 const register = USER => async dispatch => {
-    dispatch(auth_loading())
+    dispatch(auth_loading('Loading...'))
     axios.post('/users', USER)
         .then(response => {
             if(response.status === 201){
-                dispatch(auth(response.data))
+                dispatch(auth(response.data, 'Successfully registered'))
             }
         })
         .catch(err => {

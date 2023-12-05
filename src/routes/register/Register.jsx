@@ -1,9 +1,11 @@
 import { Button } from "../../utils"
-import {connect} from 'react-redux'
+import {connect, useSelector} from 'react-redux'
 import register from "../../redux/actions/auth-action"
 import { useState } from "react"
 
 const Register = props => {
+  const data = useSelector(state => state)
+  console.log(data);
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
