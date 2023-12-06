@@ -1,10 +1,13 @@
 import { Button } from "../../utils"
 import {connect, useSelector} from 'react-redux'
 import {register} from "../../redux/actions/auth-action"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import {useNavigate} from 'react-router-dom'
+import { validateToken } from "../../helpers/validate-token"
 
 const Register = props => {
-  const data = useSelector(state => state)
+  const navigate = useNavigate()
+  const data = useSelector(state => state.auth)
   console.log(data);
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -13,6 +16,11 @@ const Register = props => {
     e.preventDefault()
     props.register({name, email, password})
   }
+  useEffect(()=>{
+    if(data.user && data.user.token && validateToken(data.user.token)){
+      navigate('/')
+    }
+  },[data])
   return (
     <div className='auth-form-container'>
       <h2>Register</h2>
