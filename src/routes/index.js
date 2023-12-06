@@ -9,15 +9,15 @@ const Auth = lazy(()=>import('../pages/auth/Auth'))
 const RouterController = () => {
     return (
         <Routes>
-            <Route path='/' element={
+            {/* <Route path='/' element={
                 <Suspense fallback={<p>Loading...</p>}>
                 <Private/>
             </Suspense>
             }
-            />
-            <Route path='admin' element={
+            /> */}
+            <Route path='/' element={
                 <Suspense fallback={<p>Loading...</p>}>
-                <Admin/>
+                <Private/>
             </Suspense>
             }
             />

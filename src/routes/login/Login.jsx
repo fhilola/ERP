@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { connect, useSelector } from 'react-redux'
 import { Button } from '../../utils'
 import { login } from '../../redux/actions/auth-action'
@@ -15,7 +15,7 @@ const Login = (props) => {
     e.preventDefault()
     props.login({ email, password })
   }
-  useEffect(()=>{
+  useLayoutEffect(()=>{
     if(userinfo.user && userinfo.user.token && validateToken(userinfo.user.token)){
       navigate('/')
     }

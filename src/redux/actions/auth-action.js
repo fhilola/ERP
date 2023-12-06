@@ -1,6 +1,6 @@
 import { AUTH, AUTH_ERROR, AUTH_LOADING, AUTH_LOGOUT } from "./index";
 import axios from '../../services/index'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const auth = (user, message) => {
     console.log(message);
@@ -34,7 +34,8 @@ const auth_error = (message) => {
     }
 }
 
-const auth_logout = () => {
+export const auth_logout = (message) => {
+    toast.error(message)
     return {
         type: AUTH_LOGOUT
     }
@@ -44,7 +45,7 @@ const register = USER => async dispatch => {
     dispatch(auth_loading('Loading...'))
     axios.post('/users', USER)
         .then(response => {
-            if(response.status === 201){
+            if (response.status === 201) {
                 dispatch(auth(response.data, 'Successfully registered'))
                 localStorage.setItem('access_token', response.data.token)
             }
@@ -57,19 +58,20 @@ const register = USER => async dispatch => {
 const login = USER => async dispatch => {
     dispatch(auth_loading('Loading...'))
     axios.post('/users/login', USER)
-    .then(response => {
-        if(response.status === 200){
-            dispatch(auth(response.data, 'Successfully loged in'))
-            localStorage.setItem('access_token', response.data.token)
-        }
-    })
-    .catch(err => {
-        dispatch(auth_error(err.response.data.message))
-    })
+        .then(response => {
+            if (response.status === 200) {
+                dispatch(auth(response.data, 'Successfully loged in'))
+                localStorage.setItem('access_token', response.data.token)
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            // dispatch(auth_error(err.response.data.message))
+        })
 }
 
 const logOut = () => async (dispatch, getSelector) => {
     dispatch(auth_logout('You are successfully logged out'))
 }
 
-export { register, login, logOut}
+export { register, login, logOut }
