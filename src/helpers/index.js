@@ -1,18 +1,13 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { validateToken } from './validate-token'
 import { useSelector } from 'react-redux'
 import Admin from '../pages/admin/Admin'
-import { useLayoutEffect } from 'react'
-import axios from '../services/index'
+import usePriorFetch from '../hooks/usePriorFetch'
 
 const Private = () => {
-  useLayoutEffect(()=>{
-    axios('/users/profile')
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-  },[])
+  const [profileData, isloading, error] = usePriorFetch('/users/profile')
   const profile = useSelector(state => state.auth)
-  return profile.user && profile.user.token && validateToken(profile.user.token) ? <Admin/> : <Navigate to={'auth/login'}/>
+  return profile.user && profile.user.token && validateToken(profile.user.token) ? <Outlet context={[profileData, isloading, error]}/> : <Navigate to={'/auth/login'}/>
 }
 
 export default Private  

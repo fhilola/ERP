@@ -17,7 +17,7 @@ const Login = (props) => {
   }
   useLayoutEffect(()=>{
     if(userinfo.user && userinfo.user.token && validateToken(userinfo.user.token)){
-      navigate('/')
+      navigate('/admin')
     }
   },[userinfo])
   return (

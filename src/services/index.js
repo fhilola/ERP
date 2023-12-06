@@ -28,7 +28,7 @@ instance.interceptors.response.use(
         if (response) return response
     },
     (error) => {
-        if (error.response?.status === 401 || error.response?.status === 403 || error.response?.status === 500 || error.response?.status === 404) {
+        if (error.response?.status === 401 || error.response?.status === 403) {
             store.dispatch(auth_logout('Session expired. Please log in again'))
         }
         return Promise.reject(error)

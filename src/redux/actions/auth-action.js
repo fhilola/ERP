@@ -66,7 +66,7 @@ const login = USER => async dispatch => {
         })
         .catch(err => {
             console.log(err);
-            // dispatch(auth_error(err.response.data.message))
+            dispatch(auth_error(err.response.data.message))
         })
 }
 
